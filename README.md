@@ -1,4 +1,5 @@
 # Welcome to AppliTrak! Where you can keep track and stay organized in your job hunt.
+![applitrak](https://user-images.githubusercontent.com/79222168/144671244-f0061263-3f93-473f-a09e-f4bcd608630b.png)
 
 ## Link to Deployed Site
 
