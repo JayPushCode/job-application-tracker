@@ -1,17 +1,22 @@
 FROM node:14
 
 # Set default environment variables
-## Make sure to set as the same PORT as env WEB_PORT
-
 ENV PORT=3001
 
+# Install Git
+RUN apt-get update && apt-get install -y git
+
+# Set the working directory
 WORKDIR /app
 
-COPY package*.json ./
-RUN npm install --verbose
+# Clone the repository into the Docker image
+RUN git clone -b docker-dev https://github.com/JayPushCode/job-application-tracker.git .
 
-COPY . .
+# Install dependencies
+RUN npm install
 
-EXPOSE $PORT
+# Expose the port
+EXPOSE ${PORT}
 
+# Command to run the application
 CMD ["npm", "start"]
