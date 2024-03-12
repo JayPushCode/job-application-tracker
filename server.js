@@ -39,9 +39,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(routes);
 
 sequelize.sync({ force: false }).then(() => {
-  app.listen( () => {
+  app.listen(PORT, () => {
     console.log("Application starting to listen...")
-    if(!process.env.WEB_PORT){
+    if (!process.env.WEB_PORT) {
       console.log("Environment Web Port Number Not Found...");
       console.log(`Local Application is Now Listening at http://localhost:${PORT}`)
     } else {
