@@ -6,7 +6,7 @@ services:
       - "${WEB_PORT}:3001"
     environment:
       - NODE_ENV=dev
-    hostname: Applitrak-App
+    hostname: applitrak-app
     volumes:
       - app:/app
     networks:
@@ -20,7 +20,7 @@ services:
       - .env
     ports:
       - "${DB_PORT}:3306"
-    hostname: Applitrak-Db
+    hostname: applitrak-db
     volumes:
       - sql:/var/lib/mysql
     networks:
