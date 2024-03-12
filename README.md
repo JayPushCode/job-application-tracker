@@ -1,52 +1,25 @@
-# Welcome to AppliTrak! Where you can keep track and stay organized in your job hunt.
+# Welcome to AppliTrak! Docker Setup
+
 ![applitrak](https://user-images.githubusercontent.com/79222168/144671355-1c204c82-b9eb-44dd-b979-956546a1c45b.png)
 
+## About
 
-## Link to Deployed Site
+Be sure to download this repository if you'd like to run AppliTrak from a Docker Container. This application uses Docker Compose to create two containers, one for a MySQL Database and another to run the actual application. The purpose of me creating this was to create a simplified way to self-host applications to be accessible.
 
-[AppliTrak](https://immense-eyrie-11789.herokuapp.com/login)
+## Instructions
 
-## Table of Contents
-  * [Motivation and Technologies](#motivation)
-  * [Functionality](#functionality)
-  * [Challenges](#challenges)
-  * [Future Development](#futuredevelopment)
+1. **Step 1: Create Environment File**
 
-## Motivation
+Locate the `.env.EXAMPLE` file and create your environment variables. The most important being the root passwords, the MySQL database, user, and password as those are most important for creating the MySQL server with `MYSQL_ROOT_PASSWORD`, `MYSQL_DATABASE`, `MYSQL_USER`, `MYSQL_PASSWORD` respectively.
 
-As a team, we aimed to create a web application where users who are on the job hunt and want to stay organized in their pursuit of employment. We wanted the users to be able to add jobs that they are interested in and pertinent information regarding those jobs. The user can keep track of all the jobs they are looking at and see a calendar with any important dates that are approaching. The design concept is simple, easy to navigate, and consistent across all pages.
+After you've filled out the environment variables do be sure to rename the file to just `.env`.
 
-#### Technologies
-* Handlebars
-* CSS 
-* JavaScript
-* Bootstrap
-* Node.js
-* Express
-* mySQL
-* Sequelize
-* FullCalendar Library
+2. **Step 2: Create Docker Compose Containers**
 
-## Functionality
+Open the directory in a terminal window in an environment where Docker is installed. For instructions on how to do that consult the Docker manual and resources.
 
-* The landing page introduces the site, and has sign in and register as new user cards for the user to login
-* The user is then led to a dashboard where the jobs they are interested in will be presented 
-* The user can add a job with information such as job title, job description, and status.
-* The job will be added to the dashboard where it can be deleted or can be clicked on to view it on it's on page
-* Using the navbar, the user can navigate to a calendar
-* The calendar will allow the user to add events such as upcoming interviews 
+The containers are created by running `docker-compose up`.
 
-## Challenges
+**MISC: Common Problems**
 
-* Finding a calendar library that would function in vanilla JavaScript
-* Routes and authentication
-* Navigation links (displaying for logged in users)
-* Merge conflicts
-
-## Future Development
-* Adding a put and delete route for the events
-* Adding a modal when you click on an event showing detailed information
-* Add a date picker
-* More polished UI/mobile friendly
-* Calendar on Dashboard
-* Introduction page for the site
+The application should pull the latest code straight from the *docker-dev* repository on application restart every time. If you encounter any issues with the application not starting up, do make sure that the ports are defined and try starting the web application container again. It should get up and running.
