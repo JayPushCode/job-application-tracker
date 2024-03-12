@@ -7,7 +7,6 @@ const exphbs = require('express-handlebars');
 const routes = require('./controllers');
 const helpers = require('./utils/helpers');
 
-
 const sequelize = require('./config/connection');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
@@ -41,12 +40,13 @@ app.use(routes);
 
 sequelize.sync({ force: false }).then(() => {
   app.listen( () => {
+    console.log("Application starting to listen...")
     if(!process.env.WEB_PORT){
-      console.log(`Now listening at http://localhost/${PORT}`)
+      console.log("Environment Web Port Number Not Found...");
+      console.log(`Local Application is Now Listening at http://localhost:${PORT}`)
     } else {
-      console.log("Application is now Running!")
+      console.log("Environment Web Port Number FOUND!")
+      console.log(`Application is Now Running! http://localhost:${PORT}`)
     }
-    
-  
   });
 });
