@@ -3,6 +3,7 @@ require('dotenv').config();
 
 let sequelize;
 
+try {
   sequelize = new Sequelize(
     process.env.MYSQL_DATABASE,
     process.env.MYSQL_USER,
@@ -13,5 +14,8 @@ let sequelize;
       port: parseInt(process.env.DB_PORT) || 3306
     }
   );
+} catch (error) {
+  console.error("An error occurred while setting up Sequelize:", error);
+}
 
 module.exports = sequelize;

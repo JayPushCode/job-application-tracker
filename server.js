@@ -22,8 +22,8 @@ const sess = {
   resave: false,
   saveUninitialized: true,
   store: new SequelizeStore({
-    db: sequelize
-  })
+    db: sequelize,
+  }),
 };
 
 app.use(session(sess));
@@ -39,14 +39,18 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(routes);
 
 sequelize.sync({ force: false }).then(() => {
-  app.listen(PORT, () => {
-    console.log("Application starting to listen...")
-    if (!process.env.WEB_PORT) {
-      console.log("Environment Web Port Number Not Found...");
-      console.log(`Local Application is Now Listening at http://localhost:${PORT}`)
-    } else {
-      console.log("Environment Web Port Number FOUND!")
-      console.log(`Application is Now Running! http://localhost:${PORT}`)
-    }
-  });
+  try {
+    app.listen(PORT, () => {
+      console.log("Application starting to listen...");
+      if (!process.env.WEB_PORT) {
+        console.log("Environment Web Port Number Not Found...");
+        console.log(`Local Application is Now Listening at http://localhost:${PORT}`);
+      } else {
+        console.log("Environment Web Port Number FOUND!");
+        console.log(`Application is Now Running! http://localhost:${PORT}`);
+      }
+    });
+  } catch (error) {
+    console.error("An error occurred while starting the application:", error);
+  }
 });
