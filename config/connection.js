@@ -10,7 +10,7 @@ let sequelize;
     {
       host: process.env.DB_HOSTNAME || 'localhost',
       dialect: 'mysql',
-      port: process.env.DB_PORT || 3306
+      port: process.env.DB_PORT ? parseInt(process.env.DB_PORT) : 3306
     }
   );
 
