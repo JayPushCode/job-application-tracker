@@ -11,7 +11,7 @@ const sequelize = require('./config/connection');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
 const app = express();
-const PORT = parseInt(process.env.WEB_PORT) || 3001;
+const PORT = parseInt(process.env.PORT) || 3001;
 
 // Set up Handlebars.js engine with custom helpers
 const hbs = exphbs.create({ helpers });
@@ -41,7 +41,7 @@ app.use(routes);
 sequelize.sync({ force: false })
   .then(() => {
     app.listen(PORT, () => {
-      if (!process.env.WEB_PORT) {
+      if (!process.env.PORT) {
         console.log("Environment Web Port Number NOT FOUND!");
       } else {
         console.log("Environment Web Port Number FOUND!");
