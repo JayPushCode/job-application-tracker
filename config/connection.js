@@ -18,6 +18,7 @@ sequelize
   .authenticate()
   .then(() => {
     console.log('Connection to MySQL database successful.');
+    console.log(sequelize.config);
   })
   .catch(err => {
     console.error('Unable to connect to MySQL database:', err);
