@@ -38,19 +38,18 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(routes);
 
-sequelize.sync({ force: false }).then(() => {
-  try {
+sequelize.sync({ force: false })
+  .then(() => {
     app.listen(PORT, () => {
-      console.log("Application starting to listen...");
       if (!process.env.WEB_PORT) {
-        console.log("Environment Web Port Number Not Found...");
-        console.log(`Local Application is Now Listening at http://localhost:${PORT}`);
+        console.log("Environment Web Port Number NOT FOUND!");
       } else {
         console.log("Environment Web Port Number FOUND!");
-        console.log(`Application is Now Running! http://localhost:${PORT}`);
       }
+      console.log(`Application is now running on port ${PORT}`);
     });
-  } catch (error) {
+  })
+  .catch(error => {
     console.error("An error occurred while starting the application:", error);
-  }
-});
+    process.exit(1);
+  });
