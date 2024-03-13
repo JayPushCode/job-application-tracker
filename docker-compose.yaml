@@ -1,14 +1,20 @@
 version: '3'
 services:
   applitrak-app:
-    build: .
+    image: node:latest
     ports:
-      - "${PORT}:3001"
-    environment:
+      - "3001"
+    environment: # REPLACE WITH WANTED VARIABLES
       - NODE_ENV=dev
+      - MYSQL_DATABASE=applitrak_db
+      - MYSQL_USER=YOUR_USERNAME_HERE
+      - MYSQL_PASSWORD=YOUR_PASSWORDHERE
+      - DB_HOSTNAME=applitrak-db
     hostname: applitrakHost
     volumes:
       - app:/app
+    command: >
+      /bin/sh -c "git clone -b docker-dev https://github.com/JayPushCode/job-application-tracker.git /app && cd /app && npm install && npm start"
     networks:
       - network
     depends_on:
@@ -16,11 +22,14 @@ services:
 
   applitrak-db:
     image: mysql:latest
-    env_file:
-      - .env
     ports:
-      - "${DB_PORT}:3306"
-    hostname: "${DB_HOSTNAME}"
+      - "3306"
+    environment: # REPLACE WITH WANTED VARIABLES
+      - MYSQL_ROOT_PASSWORD=YOUR_ROOT_PASSWORD_HERE
+      - MYSQL_DATABASE=applitrak_db
+      - MYSQL_USER=YOUR_USERNAME_HERE
+      - MYSQL_PASSWORD=YOUR_PASSWORDHERE
+    hostname: "applitrk-db"
     volumes:
       - sql:/var/lib/mysql
     networks:
