@@ -12,6 +12,7 @@
 - [Functionality](#functionality)
 - [Challenges](#challenges)
 - [Future Development](#future-development)
+- [Docker Setup](#docker-setup)
 
 ## Motivation and Technologies
 
@@ -53,3 +54,10 @@ As a team, we aimed to create a web application where users who are on the job h
 - More polished UI/mobile-friendly.
 - Calendar on Dashboard.
 - Introduction page for the site.
+
+## Docker Setup
+
+- For a simplified Docker setup with singular docker-compose.yaml script, visit the [`docker-setup-simple`](https://github.com/JayPushCode/job-application-tracker/tree/docker-setup-simple) development branch for setup & instruction.
+
+
+- For a slightly more complicated Docker setup with a `DockerFile`, `.env`, and `docker-compose.yaml` visit the [`docker-setup`](https://github.com/JayPushCode/job-application-tracker/tree/docker-setup) branch for further setup and instruction.
