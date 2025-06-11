@@ -2,16 +2,20 @@ const Sequelize = require('sequelize');
 require('dotenv').config();
 
 let sequelize;
+const {
+  MYSQL_DATABASE,
+  MYSQL_USER,
+  MYSQL_PASSWORD,
+  DB_HOSTNAME
+} = process.env;
 
-sequelize = new Sequelize(
-  process.env.MYSQL_DATABASE,
-  process.env.MYSQL_USER,
-  process.env.MYSQL_PASSWORD,
+sequelize = new Sequelize(MYSQL_DATABASE,MYSQL_USER,MYSQL_PASSWORD,
   {
-    host: process.env.DB_HOSTNAME || 'localhost',
+    host: DB_HOSTNAME || 'localhost',
     dialect: 'mysql',
-    port: 3306,
-    socketPath: '/var/run/mysqld/mysqld.sock'
+    port: process.env.DB_PORT || 3306,
+    socketPath: '/var/run/mysqld/mysqld.sock',
+    logging: process.env.SEQUELIZE_LOGGING === 'true' ? console.log : false,
   }
 );
 
@@ -19,7 +23,9 @@ sequelize
   .authenticate()
   .then(() => {
     console.log('Connection to MySQL database successful.');
-    console.log(sequelize.config);
+    if (process.env.NODE_ENV !== 'production') {
+      console.log(sequelize.config);
+    }
   })
   .catch(err => {
     console.error('Unable to connect to MySQL database:', err);
