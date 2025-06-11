@@ -4,7 +4,7 @@
 
 ## Link to Deployed Site
 
-[AppliTrak](https://immense-eyrie-11789.herokuapp.com/login)
+[AppliTrak](https://applitrak.zapto.org/login)
 
 ## Table of Contents
 
