@@ -4,7 +4,7 @@
 
 ## Link to Deployed Site
 
-[AppliTrak](https://applitrak.zapto.org/login)
+[AppliTrak](https://applitrak.ddnsgeek.com/login)
 
 ## Table of Contents
 
